@@ -42,4 +42,8 @@ char		*ft_itoa(intmax_t number);
 
 intmax_t	ft_atoi(char *number_str);
 
+void		ft_putnbr(intmax_t number);
+
+void		ft_putnbr_fd(intmax_t number, int fd);
+
 #endif

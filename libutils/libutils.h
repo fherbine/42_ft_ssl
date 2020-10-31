@@ -32,10 +32,14 @@ void		ft_putstr(char *str);
 
 void		ft_putstr_fd(char *str, int fd);
 
+intmax_t	ft_power(int number, unsigned int power);
+
 uintmax_t	ft_absolute(intmax_t number);
 
 char		*ft_strrev(char *str);
 
 char		*ft_itoa(intmax_t number);
+
+intmax_t	ft_atoi(char *number_str);
 
 #endif

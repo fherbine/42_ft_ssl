@@ -1,6 +1,6 @@
 SRCS = ft_putchar.c ft_putchar_fd.c ft_strlen.c ft_putstr.c ft_putstr_fd.c \
 		ft_absolute.c ft_strrev.c ft_itoa.c ft_power.c ft_atoi.c ft_putnbr.c \
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c ft_strcat.c
 NAME = libutils.a
 INCLUDE = ./
 FLAGS = -Wall -Wextra -Werror

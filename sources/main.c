@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ssl.h"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	ft_putchar((char)42);
 	return (0);

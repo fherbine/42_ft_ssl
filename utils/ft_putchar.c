@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fherbine <fherbine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 10:44:50 by fherbine          #+#    #+#             */
-/*   Updated: 2020/10/31 10:44:56 by fherbine         ###   ########.fr       */
+/*   Created: 2020/10/31 10:44:47 by fherbine          #+#    #+#             */
+/*   Updated: 2020/10/31 10:44:47 by fherbine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
-# include <unistd.h>
+#include "utils.h"
 
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-
-void	ft_putchar(char character);
-
-#endif
+void	ft_putchar(char character)
+{
+	write(STDOUT, &character, 1);
+}

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutils.h                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fherbine <fherbine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 10:44:50 by fherbine          #+#    #+#             */
-/*   Updated: 2020/10/31 10:44:56 by fherbine         ###   ########.fr       */
+/*   Created: 2020/10/31 11:34:31 by fherbine          #+#    #+#             */
+/*   Updated: 2020/10/31 11:34:31 by fherbine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTILS_H
-# define LIBUTILS_H
-# include <unistd.h>
-# include <stdlib.h>
+#include "libutils.h"
 
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
+size_t		ft_strlen(char *str)
+{
+	size_t	i;
 
-void	ft_putchar(char character);
-
-void	ft_putchar_fd(char character, int fd);
-
-size_t	ft_strlen(char *str);
-
-#endif
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}

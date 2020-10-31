@@ -1,5 +1,5 @@
 SRCS = ft_putchar.c
-NAME = utils.a
+NAME = libutils.a
 INCLUDE = ./
 FLAGS = -Wall -Wextra -Werror
 OBJS = $(SRCS:.c=.o)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libutils.h"
 
 void	ft_putchar(char character)
 {

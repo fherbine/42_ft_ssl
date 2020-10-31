@@ -1,4 +1,4 @@
-SRCS = ft_putchar.c ft_putchar_fd.c ft_strlen.c ft_putstr.c
+SRCS = ft_putchar.c ft_putchar_fd.c ft_strlen.c ft_putstr.c ft_putstr_fd.c
 NAME = libutils.a
 INCLUDE = ./
 FLAGS = -Wall -Wextra -Werror

@@ -29,16 +29,26 @@ static size_t	ft_number_len(intmax_t number)
 char			*ft_itoa(intmax_t number)
 {
 	char		*number_str;
+	char		negative;
 	size_t		i;
 
-	i = 0;
+	if (!number)
+		return ("0");
 	number_str = (char *)malloc(sizeof(char) * (ft_number_len(number) + 1));
 	if (!number_str)
 		return (NULL);
+	negative = (number < 0) ? TRUE : FALSE;
+	i = 0;
+	number = ft_absolute(number);
 	while (number)
 	{
 		number_str[i] = (char)(number % 10 + 48);
 		number /= 10;
+		i++;
+	}
+	if (negative)
+	{
+		number_str[i] = '-';
 		i++;
 	}
 	number_str[i] = '\0';

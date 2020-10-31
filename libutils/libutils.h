@@ -19,6 +19,8 @@
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+# define TRUE 1
+# define FALSE 0
 
 void		ft_putchar(char character);
 

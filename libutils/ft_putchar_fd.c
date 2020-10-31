@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutils.h                                         :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fherbine <fherbine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 10:44:50 by fherbine          #+#    #+#             */
-/*   Updated: 2020/10/31 10:44:56 by fherbine         ###   ########.fr       */
+/*   Created: 2020/10/31 11:32:02 by fherbine          #+#    #+#             */
+/*   Updated: 2020/10/31 11:32:02 by fherbine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTILS_H
-# define LIBUTILS_H
-# include <unistd.h>
+#include "libutils.h"
 
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-
-void	ft_putchar(char character);
-
-void	ft_putchar_fd(char character, int fd);
-
-#endif
+void	ft_putchar_fd(char character, int fd)
+{
+	write(fd, &character, fd);
+}

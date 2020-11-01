@@ -18,8 +18,17 @@
 # include "../libutils/libutils.h"
 # define BUFFER 1024
 
-char		*read_from_stdin(void);
+typedef struct	s_config
+{
+	t_u8		print;
+	t_u8		quiet;
+	t_u8		reverse;
+	t_u8		given_sum;
+	t_u8		fd;
+}				t_config;
 
-char		*read_from_file(char *file_path);
+char			*read_from_stdin(void);
+
+char			*read_from_file(char *file_path);
 
 #endif

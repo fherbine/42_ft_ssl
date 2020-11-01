@@ -22,30 +22,37 @@
 # define TRUE 1
 # define FALSE 0
 
-void		ft_putchar(char character);
+typedef	unsigned char	t_u8;
+typedef	unsigned short	t_u16;
+typedef	unsigned long	t_u32;
+typedef	signed char		t_s8;
+typedef	signed short	t_s16;
+typedef	signed long		t_s32;
 
-void		ft_putchar_fd(char character, int fd);
+void					ft_putchar(char character);
 
-size_t		ft_strlen(char *str);
+void					ft_putchar_fd(char character, int fd);
 
-void		ft_putstr(char *str);
+size_t					ft_strlen(char *str);
 
-void		ft_putstr_fd(char *str, int fd);
+void					ft_putstr(char *str);
 
-intmax_t	ft_power(int number, unsigned int power);
+void					ft_putstr_fd(char *str, int fd);
 
-uintmax_t	ft_absolute(intmax_t number);
+intmax_t				ft_power(int number, unsigned int power);
 
-char		*ft_strrev(char *str);
+uintmax_t				ft_absolute(intmax_t number);
 
-char		*ft_itoa(intmax_t number);
+char					*ft_strrev(char *str);
 
-intmax_t	ft_atoi(char *number_str);
+char					*ft_itoa(intmax_t number);
 
-void		ft_putnbr(intmax_t number);
+intmax_t				ft_atoi(char *number_str);
 
-void		ft_putnbr_fd(intmax_t number, int fd);
+void					ft_putnbr(intmax_t number);
 
-char		*ft_strcat(char *s1, char *s2);
+void					ft_putnbr_fd(intmax_t number, int fd);
+
+char					*ft_strcat(char *s1, char *s2);
 
 #endif

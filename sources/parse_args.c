@@ -53,10 +53,18 @@ static void		get_algorithm(char *algo, t_config *config)
 		ft_putstr_fd(algo, STDERR);
 		ft_putstr_fd(": No such algorithm.\n", STDERR);
 		ft_putstr_fd("ft_ssl: ", STDERR);
+		ft_putstr_fd(algo, STDERR);
 		ft_putstr_fd(": Use -help for summary.\n", STDERR);
 		exit(EXIT_ERROR);
 	}
 	config->algorithm = algo;
+}
+
+static void		too_few_args(void)
+{
+	ft_putstr_fd("ft_ssl: Too few arguments.\n", STDERR);
+	ft_putstr_fd("ft_ssl: Use -help for summary.\n", STDERR);
+	exit(EXIT_ERROR);
 }
 
 t_config		parse(int argc, char **argv)
@@ -69,10 +77,7 @@ t_config		parse(int argc, char **argv)
 	get_options = TRUE;
 	set_default_config(&config);
 	if (argc < i)
-	{
-		// do smthg
-		exit(EXIT_ERROR);
-	}
+		too_few_args();
 	get_algorithm(argv[1], &config);
 	while (i < argc)
 	{

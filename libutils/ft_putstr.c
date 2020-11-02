@@ -14,5 +14,5 @@
 
 void	ft_putstr(char *str)
 {
-	write(STDOUT, (str) ? str : "(null)", ft_strlen(str));
+	write(STDOUT, (str) ? str : "(null)", ft_strlen((str) ? str : 7));
 }

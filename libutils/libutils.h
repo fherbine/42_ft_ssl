@@ -55,4 +55,6 @@ void					ft_putnbr_fd(intmax_t number, int fd);
 
 char					*ft_strcat(char *s1, char *s2);
 
+char					*ft_strchr(const char *string, char c);
+
 #endif

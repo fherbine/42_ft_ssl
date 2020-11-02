@@ -18,6 +18,13 @@
 # include "../libutils/libutils.h"
 # define BUFFER 1024
 
+typedef struct	s_file
+{
+	char		*path;
+	char		*buffer;
+	t_file		*next;
+}				t_file;
+
 typedef struct	s_config
 {
 	t_u8		print;
@@ -26,6 +33,7 @@ typedef struct	s_config
 	t_u8		given_sum;
 	t_u8		fd;
 	char		*algorithm;
+	t_file		*files;
 }				t_config;
 
 char			*read_from_stdin(void);

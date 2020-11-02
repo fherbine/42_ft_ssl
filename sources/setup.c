@@ -16,6 +16,7 @@ void		set_default_config(t_config *config)
 {
 	config->algorithm = "";
 	config->fd = 0;
+	config->files = NULL;
 	config->given_sum = FALSE;
 	config->print = FALSE;
 	config->quiet = FALSE;

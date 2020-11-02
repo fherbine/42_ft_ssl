@@ -14,5 +14,5 @@
 
 void	ft_putchar_fd(char character, int fd)
 {
-	write(fd, &character, fd);
+	write(fd, &character, 1);
 }

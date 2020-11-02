@@ -45,15 +45,35 @@ static void		add_file_to_config(char *path, t_config *config)
 	add_file_to_list(file, &(config->files));
 }
 
+static void		get_algorithm(char *algo, t_config *config)
+{
+	if (ft_strcmp(algo, "md5") && ft_strcmp(algo, "sha256"))
+	{
+		ft_putstr_fd("ft_ssl: ", STDERR);
+		ft_putstr_fd(algo, STDERR);
+		ft_putstr_fd(": No such algorithm.\n", STDERR);
+		ft_putstr_fd("ft_ssl: ", STDERR);
+		ft_putstr_fd(": Use -help for summary.\n", STDERR);
+		exit(EXIT_ERROR);
+	}
+	config->algorithm = algo;
+}
+
 t_config		parse(int argc, char **argv)
 {
 	t_config	config;
 	int			i;
 	t_u8		get_options;
 
-	i = 0;
+	i = 2;
 	get_options = TRUE;
 	set_default_config(&config);
+	if (argc < i)
+	{
+		// do smthg
+		exit(EXIT_ERROR);
+	}
+	get_algorithm(argv[1], &config);
 	while (i < argc)
 	{
 		if (argv[i][0] == '-' && get_options)

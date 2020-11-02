@@ -30,12 +30,12 @@ char		*clean_flag(char *raw_flag)
 
 	dash_count = 0;
 	i = 0;
-	while(dash_count < 2 && raw_flag[i])
+	while (dash_count < 2 && raw_flag[i])
 	{
 		if (raw_flag[i] == '-')
 			dash_count++;
 		else
-			break;
+			break ;
 		i++;
 	}
 	return (&raw_flag[i]);

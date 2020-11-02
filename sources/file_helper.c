@@ -18,11 +18,9 @@ t_file		*new_file(char *path)
 
 	if (!(file = (t_file *)malloc(sizeof(t_file))))
 		return (NULL);
-
 	file->next = NULL;
 	file->buffer = NULL;
 	file->path = path;
-
 	return (file);
 }
 

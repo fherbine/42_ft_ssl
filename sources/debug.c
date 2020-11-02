@@ -29,7 +29,6 @@ static char		*file_struct(void *chlst)
 
 	if (!(buf = (char *)malloc(sizeof(char) * 1)))
 		return (NULL);
-	
 	buf = "";
 	files = *((t_file **)chlst);
 	if (!(files))
@@ -47,7 +46,7 @@ static char		*file_struct(void *chlst)
 static void		print_struct_elem(char *type, char *name, void *value, \
 									char *(*f)(void *))
 {
-	char *final_value;
+	char		*final_value;
 
 	final_value = (*f)(value);
 	ft_putstr(type);

@@ -34,4 +34,6 @@ char			*read_from_file(char *file_path);
 
 void			set_default_config(t_config *config);
 
+char			*clean_flag(char *raw_flag);
+
 #endif

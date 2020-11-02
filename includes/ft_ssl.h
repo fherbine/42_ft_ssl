@@ -50,4 +50,6 @@ void				add_file_to_list(t_file *file, t_file **list);
 
 t_config			parse(int argc, char **argv);
 
+void				debug_print_config(t_config config);
+
 #endif

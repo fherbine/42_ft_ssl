@@ -12,6 +12,63 @@
 
 #include "../includes/ft_ssl.h"
 
-void	debug_print_config(t_config config)
+static char		*binary_cast(void *number)
 {
+	return ((*((t_u8 *)number)) ? "True" : "False");
+}
+
+static char		*as_is(void *str)
+{
+	return (*((char **)str));
+}
+
+static char		*file_struct(void *chlst)
+{
+	char		*buf;
+	t_file		*files;
+
+	if (!(buf = (char *)malloc(sizeof(char) * 1)))
+		return (NULL);
+	
+	buf = "";
+	files = *((t_file **)chlst);
+	if (!(files))
+		return ("(null)");
+	while (files)
+	{
+		buf = ft_strcat(buf, files->path);
+		buf = ft_strcat(buf, " > ");
+		files = files->next;
+	}
+	buf = ft_strcat(buf, "(null)");
+	return (buf);
+}
+
+static void		print_struct_elem(char *type, char *name, void *value, \
+									char *(*f)(void *))
+{
+	char *final_value;
+
+	final_value = (*f)(value);
+	ft_putstr(type);
+	ft_putchar('\t');
+	ft_putstr(name);
+	ft_putchar('\t');
+	ft_putstr(final_value);
+	ft_putchar('\n');
+}
+
+void			debug_print_config(t_config config)
+{
+	ft_putstr("in debug: ");
+	ft_putstr(config.files->path);
+	ft_putstr("\n");
+
+	ft_putstr("=== CONFIG ===\n");
+	print_struct_elem("t_u8", "print", &(config.print), &binary_cast);
+	print_struct_elem("t_u8", "quiet", &(config.quiet), &binary_cast);
+	print_struct_elem("t_u8", "reverse", &(config.reverse), &binary_cast);
+	print_struct_elem("t_u8", "sum", &(config.given_sum), &binary_cast);
+	print_struct_elem("char*", "algorithm", &(config.algorithm), &as_is);
+	print_struct_elem("t_file*", "files", &(config.files), &file_struct);
 }

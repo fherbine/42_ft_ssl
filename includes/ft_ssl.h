@@ -18,35 +18,36 @@
 # include "../libutils/libutils.h"
 # define BUFFER 1024
 
-typedef struct	s_file
+typedef struct		s_file
 {
-	char		*path;
-	char		*buffer;
-	t_file		*next;
-}				t_file;
+	char			*path;
+	char			*buffer;
+	struct s_file	*next;
+}					t_file;
 
-typedef struct	s_config
+typedef struct		s_config
 {
-	t_u8		print;
-	t_u8		quiet;
-	t_u8		reverse;
-	t_u8		given_sum;
-	t_u8		fd;
-	char		*algorithm;
-	t_file		*files;
-}				t_config;
+	t_u8			print;
+	t_u8			quiet;
+	t_u8			reverse;
+	t_u8			given_sum;
+	t_u8			fd;
+	char			*algorithm;
+	t_file			*files;
+}					t_config;
 
-char			*read_from_stdin(void);
+char				*read_from_stdin(void);
 
-char			*read_from_file(char *file_path);
+char				*read_from_file(char *file_path);
 
-void			set_default_config(t_config *config);
+void				set_default_config(t_config *config);
 
-char			*clean_flag(char *raw_flag);
+char				*clean_flag(char *raw_flag);
 
-t_file			*new_file(char *path);
+t_file				*new_file(char *path);
 
-void			add_file_to_list(t_file *file, t_file **list);
+void				add_file_to_list(t_file *file, t_file **list);
 
+t_config			parse(int argc, char **argv);
 
 #endif

@@ -2,7 +2,7 @@ NAME = ft_ssl
 INCLUDES = ./includes
 SRC_PATH = ./sources
 OBJ_PATH = $(SRC_PATH)/debug
-SRC_NAMES = main.c read_input_buffer.c parse_args.c
+SRC_NAMES = main.c read_input_buffer.c parse_args.c setup.c
 OBJ_NAMES = $(SRC_NAMES:.c=.o)
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAMES))
 OBJS = $(addprefix $(OBJ_PATH)/,$(OBJ_NAMES))

@@ -25,10 +25,13 @@ typedef struct	s_config
 	t_u8		reverse;
 	t_u8		given_sum;
 	t_u8		fd;
+	char		*algorithm;
 }				t_config;
 
 char			*read_from_stdin(void);
 
 char			*read_from_file(char *file_path);
+
+void			set_default_config(t_config *config);
 
 #endif

@@ -42,7 +42,7 @@ static void		add_file_to_config(char *path, t_config *config)
 	t_file		*file;
 
 	file = new_file(path);
-	add_file_to_list(file, &(config->files));
+	add_file_to_fifo_list(file, &(config->files));
 }
 
 static void		get_algorithm(char *algo, t_config *config)

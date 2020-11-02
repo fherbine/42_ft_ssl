@@ -46,7 +46,9 @@ char				*clean_flag(char *raw_flag);
 
 t_file				*new_file(char *path);
 
-void				add_file_to_list(t_file *file, t_file **list);
+void				add_file_to_lifo_list(t_file *file, t_file **list);
+
+void				add_file_to_fifo_list(t_file *file, t_file **list);
 
 t_config			parse(int argc, char **argv);
 

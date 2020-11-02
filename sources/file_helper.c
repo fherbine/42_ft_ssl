@@ -24,8 +24,23 @@ t_file		*new_file(char *path)
 	return (file);
 }
 
-void		add_file_to_list(t_file *file, t_file **list)
+void		add_file_to_lifo_list(t_file *file, t_file **list)
 {
 	file->next = *list;
 	*list = file;
+}
+
+void		add_file_to_fifo_list(t_file *file, t_file **list)
+{
+	t_file	*tmp;
+
+	if (!(*list))
+	{
+		add_file_to_lifo_list(file, list);
+		return ;
+	}
+	tmp = *list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = file;
 }

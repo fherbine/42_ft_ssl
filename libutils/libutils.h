@@ -60,4 +60,7 @@ char					*ft_strchr(const char *string, char c);
 
 int						ft_strcmp(const char *s1, const char *s2);
 
+char					*ft_strsub(const char *s, unsigned int start, \
+									size_t len);
+
 #endif

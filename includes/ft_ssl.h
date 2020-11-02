@@ -44,4 +44,9 @@ void			set_default_config(t_config *config);
 
 char			*clean_flag(char *raw_flag);
 
+t_file			*new_file(char *path);
+
+void			add_file_to_list(t_file *file, t_file **list);
+
+
 #endif

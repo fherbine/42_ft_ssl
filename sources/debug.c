@@ -59,11 +59,12 @@ static void		print_struct_elem(char *type, char *name, void *value, \
 
 void			debug_print_config(t_config config)
 {
-	ft_putstr("=== CONFIG ===\n");
+	ft_putstr("======= CONFIG =======\n");
 	print_struct_elem("t_u8", "print", &(config.print), &binary_cast);
 	print_struct_elem("t_u8", "quiet", &(config.quiet), &binary_cast);
 	print_struct_elem("t_u8", "reverse", &(config.reverse), &binary_cast);
 	print_struct_elem("t_u8", "sum", &(config.given_sum), &binary_cast);
+	print_struct_elem("char*", "given_str", &(config.given_str), &as_is);
 	print_struct_elem("char*", "algorithm", &(config.algorithm), &as_is);
 	print_struct_elem("t_file*", "files", &(config.files), &file_struct);
 }

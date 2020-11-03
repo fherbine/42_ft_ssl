@@ -81,7 +81,9 @@ t_config		parse(int argc, char **argv)
 	get_algorithm(argv[1], &config);
 	while (i < argc)
 	{
-		if (argv[i][0] == '-' && get_options)
+		if (!ft_strcmp(argv[i - 1], "-s") && get_options && !config.given_str)
+			config.given_str = argv[i];
+		else if (argv[i][0] == '-' && get_options)
 			parse_flag(argv[i], &config);
 		else
 		{

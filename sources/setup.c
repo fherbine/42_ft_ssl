@@ -14,7 +14,8 @@
 
 void		set_default_config(t_config *config)
 {
-	config->algorithm = "";
+	config->algorithm = NULL;
+	config->given_str = NULL;
 	config->fd = 0;
 	config->files = NULL;
 	config->given_sum = FALSE;

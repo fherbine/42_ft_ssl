@@ -32,6 +32,7 @@ typedef struct		s_config
 	t_u8			reverse;
 	t_u8			given_sum;
 	t_u8			fd;
+	char			*given_str;
 	char			*algorithm;
 	t_file			*files;
 }					t_config;

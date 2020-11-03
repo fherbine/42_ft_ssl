@@ -71,4 +71,6 @@ char					*ft_itoa_base(uintmax_t n, uintmax_t base);
 char					*bword2str(uintmax_t word, uint8_t base, \
 									uint16_t word_len);
 
+void					*ft_memcpy(void *dst, const void *src, size_t n);
+
 #endif

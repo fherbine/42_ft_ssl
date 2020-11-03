@@ -66,4 +66,6 @@ char					*ft_strsub(const char *s, unsigned int start, \
 
 char					*ft_strdup(const char *str);
 
+char					*ft_itoa_base(uintmax_t n, uintmax_t base);
+
 #endif

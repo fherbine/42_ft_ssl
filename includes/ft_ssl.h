@@ -55,4 +55,6 @@ t_config			parse(int argc, char **argv);
 
 void				debug_print_config(t_config config);
 
+void				print_help(char *algorithm);
+
 #endif

@@ -22,6 +22,8 @@ static void		parse_flag(char *flag_str, t_config *config)
 		config->reverse = TRUE;
 	else if (!(ft_strcmp(flag_str, "-s")))
 		config->given_sum = TRUE;
+	else if (!(ft_strcmp(flag_str, "-help")))
+		print_help(config->algorithm);
 	else
 	{
 		ft_putstr_fd("ft_ssl: ", STDERR);
@@ -47,7 +49,9 @@ static void		add_file_to_config(char *path, t_config *config)
 
 static void		get_algorithm(char *algo, t_config *config)
 {
-	if (ft_strcmp(algo, "md5") && ft_strcmp(algo, "sha256"))
+	if (!ft_strcmp(algo, "-help"))
+		print_help(NULL);
+	else if (ft_strcmp(algo, "md5") && ft_strcmp(algo, "sha256"))
 	{
 		ft_putstr_fd("ft_ssl: ", STDERR);
 		ft_putstr_fd(algo, STDERR);

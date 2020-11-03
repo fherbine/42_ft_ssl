@@ -68,3 +68,19 @@ void			debug_print_config(t_config config)
 	print_struct_elem("char*", "algorithm", &(config.algorithm), &as_is);
 	print_struct_elem("t_file*", "files", &(config.files), &file_struct);
 }
+
+void			debug_512_block(uint32_t *block, int base)
+{
+	int			i;
+
+	i = 0;
+	while (i < 16)
+	{
+		ft_putstr("b(");
+		ft_putnbr(i);
+		ft_putstr("): ");
+		ft_putstr(bword2str(block[i], base, 32));
+		ft_putstr("\n");
+		i++;
+	}
+}

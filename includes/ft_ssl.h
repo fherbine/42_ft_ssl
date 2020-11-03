@@ -58,4 +58,6 @@ void				debug_print_config(t_config config);
 
 void				print_help(char *algorithm);
 
+void				debug_512_block(uint32_t *block, int base);
+
 #endif

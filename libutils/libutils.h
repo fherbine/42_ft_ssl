@@ -64,8 +64,11 @@ int						ft_strcmp(const char *s1, const char *s2);
 char					*ft_strsub(const char *s, unsigned int start, \
 									size_t len);
 
-char					*ft_strdup(const char *str);
+char					*ft_strdup(char *str);
 
 char					*ft_itoa_base(uintmax_t n, uintmax_t base);
+
+char					*bword2str(uintmax_t word, uint8_t base, \
+									uint16_t word_len);
 
 #endif

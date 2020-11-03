@@ -12,8 +12,7 @@
 
 #include "libutils.h"
 
-
-char		*ft_strdup(const char *str)
+char		*ft_strdup(char *str)
 {
 	size_t	i;
 	char	*cpy;

@@ -16,6 +16,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include "../libutils/libutils.h"
+# include "md5.h"
 # define BUFFER 1024
 
 typedef struct		s_file

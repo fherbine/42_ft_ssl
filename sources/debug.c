@@ -76,7 +76,7 @@ void			debug_512_block(uint32_t *block, int base)
 	i = 0;
 	while (i < 16)
 	{
-		ft_putstr("b(");
+		ft_putstr("word(");
 		ft_putnbr(i);
 		ft_putstr("): ");
 		ft_putstr(bword2str(block[i], base, 32));

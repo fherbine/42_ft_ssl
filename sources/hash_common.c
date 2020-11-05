@@ -53,3 +53,8 @@ uint32_t		block_padding(char *str, uint32_t **block_ptr)
 	*block_ptr = ((uint32_t *)buffer);
 	return (blen + npad + 1 + 64);
 }
+
+uint32_t	leftrotate(uint32_t to_rotate, uint8_t n)
+{
+	return ((to_rotate << n) | (to_rotate >> (32 - n)));
+}

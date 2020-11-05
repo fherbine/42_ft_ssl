@@ -69,12 +69,12 @@ void			debug_print_config(t_config config)
 	print_struct_elem("t_file*", "files", &(config.files), &file_struct);
 }
 
-void			debug_512_block(uint32_t *block, int base)
+void			debug_512_block(uint32_t *block, int base, int bit_size)
 {
 	int			i;
 
 	i = 0;
-	while (i < 16)
+	while (i < bit_size)
 	{
 		ft_putstr("word(");
 		ft_putnbr(i);

@@ -50,3 +50,14 @@ uint32_t		leftrotate(uint32_t to_rotate, uint8_t n)
 {
 	return ((to_rotate << n) | (to_rotate >> (32 - n)));
 }
+
+uint32_t		to_little_endian(uint32_t input)
+{
+	uint32_t	lendnum;
+
+	lendnum = ((input >> 24) & 0xff) |
+			((input << 8) & 0xff0000) |
+			((input >> 8) & 0xff00) |
+			((input << 24) & 0xff000000);
+	return (lendnum);
+}

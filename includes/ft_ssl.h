@@ -64,4 +64,6 @@ uint32_t			block_padding(char *str, uint32_t **block_ptr);
 
 uint32_t			leftrotate(uint32_t to_rotate, uint8_t n);
 
+uint32_t			to_little_endian(uint32_t input);
+
 #endif

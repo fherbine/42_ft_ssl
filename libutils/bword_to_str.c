@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libutils.h"
-#include <stdio.h>
 
 static uint16_t	get_word_len(uint16_t word_len, uint8_t base)
 {

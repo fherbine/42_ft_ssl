@@ -73,4 +73,7 @@ char					*bword2str(uintmax_t word, uint8_t base, \
 
 void					*ft_memcpy(void *dst, const void *src, size_t n);
 
+void					ft_printmemory(void *ptr, size_t nbytes, \
+										uint8_t word_size);
+
 #endif

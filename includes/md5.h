@@ -45,4 +45,26 @@ static uint32_t const g_cst_md5[64] = {
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
+typedef struct		s_md5
+{
+	uint32_t		*blocks;
+	uint32_t		a;
+	uint32_t		b;
+	uint32_t		c;
+	uint32_t		d;
+	uint64_t		bits_count;
+	uint32_t		vars[4];
+}					t_md5;
+
+void				md5_helper_1(uint32_t *index, uint32_t *inputs, \
+									uint32_t *outputs);
+void				md5_helper_2(uint32_t *index, uint32_t *inputs, \
+									uint32_t *outputs);
+void				md5_helper_3(uint32_t *index, uint32_t *inputs, \
+									uint32_t *outputs);
+void				md5_helper_4(uint32_t *index, uint32_t *inputs, \
+									uint32_t *outputs);
+									
+char				*md5(t_md5	md5_struct);
+
 #endif

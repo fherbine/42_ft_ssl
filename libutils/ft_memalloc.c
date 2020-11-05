@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fherbine <fherbine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 11:34:31 by fherbine          #+#    #+#             */
-/*   Updated: 2020/10/31 11:34:31 by fherbine         ###   ########.fr       */
+/*   Created: 2020/11/05 22:12:17 by fherbine          #+#    #+#             */
+/*   Updated: 2020/11/05 22:12:17 by fherbine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libutils.h"
 
-size_t		ft_strlen(const char *str)
+void	*ft_memalloc(size_t size)
 {
-	size_t	i;
+	void *s;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	if ((s = (malloc(size))) == NULL)
+		exit(EXIT_FAILURE);
+	ft_bzero(s, size);
+	return (s);
 }

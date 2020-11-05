@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fherbine <fherbine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 11:34:31 by fherbine          #+#    #+#             */
-/*   Updated: 2020/10/31 11:34:31 by fherbine         ###   ########.fr       */
+/*   Created: 2020/11/05 22:10:11 by fherbine          #+#    #+#             */
+/*   Updated: 2020/11/05 22:10:11 by fherbine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libutils.h"
 
-size_t		ft_strlen(const char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	if (n > 0)
+		s = ft_memset(s, 0, n);
 }

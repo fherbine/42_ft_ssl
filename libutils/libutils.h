@@ -35,7 +35,7 @@ void					ft_putchar(char character);
 
 void					ft_putchar_fd(char character, int fd);
 
-size_t					ft_strlen(char *str);
+size_t					ft_strlen(const char *str);
 
 void					ft_putstr(char *str);
 
@@ -75,5 +75,13 @@ void					*ft_memcpy(void *dst, const void *src, size_t n);
 
 void					ft_printmemory(void *ptr, size_t nbytes, \
 										uint8_t word_size);
+
+void					*ft_memset(void *b, int c, size_t len);
+
+void					ft_bzero(void *s, size_t n);
+
+void					*ft_memalloc(size_t size);
+
+char					*ft_strjoin(char *s1, const char *s2);
 
 #endif

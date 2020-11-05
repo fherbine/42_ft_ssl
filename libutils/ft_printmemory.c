@@ -22,7 +22,7 @@ void		ft_printmemory(void *ptr, size_t nbytes, uint8_t word_size)
 		if (!(i % word_size))
 		{
 			ft_putstr("\n0x");
-			ft_putstr(ft_itoa_base(((uintmax_t)&ptr) + i * 8, 16));
+			ft_putstr(ft_itoa_base(((uintmax_t) & ptr) + i * 8, 16));
 			ft_putstr(":");
 		}
 		ft_putstr("\t0b");

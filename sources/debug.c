@@ -12,13 +12,10 @@
 
 #include "../includes/ft_ssl.h"
 
-static char		*binary_cast(void *number)
+static char		*binstr_cast(void *str)
 {
-	return ((*((t_u8 *)number)) ? "True" : "False");
-}
-
-static char		*as_is(void *str)
-{
+	if ((*(t_u8 *)str) == TRUE || (*(t_u8 *)str) == FALSE)
+		return ((*((t_u8 *)str)) ? "True" : "False");
 	return (*((char **)str));
 }
 
@@ -60,21 +57,21 @@ static void		print_struct_elem(char *type, char *name, void *value, \
 void			debug_print_config(t_config config)
 {
 	ft_putstr("======= CONFIG =======\n");
-	print_struct_elem("t_u8", "print", &(config.print), &binary_cast);
-	print_struct_elem("t_u8", "quiet", &(config.quiet), &binary_cast);
-	print_struct_elem("t_u8", "reverse", &(config.reverse), &binary_cast);
-	print_struct_elem("t_u8", "sum", &(config.given_sum), &binary_cast);
-	print_struct_elem("char*", "given_str", &(config.given_str), &as_is);
-	print_struct_elem("char*", "algorithm", &(config.algorithm), &as_is);
+	print_struct_elem("t_u8", "print", &(config.print), &binstr_cast);
+	print_struct_elem("t_u8", "quiet", &(config.quiet), &binstr_cast);
+	print_struct_elem("t_u8", "reverse", &(config.reverse), &binstr_cast);
+	print_struct_elem("t_u8", "sum", &(config.given_sum), &binstr_cast);
+	print_struct_elem("char*", "given_str", &(config.given_str), &binstr_cast);
+	print_struct_elem("char*", "algorithm", &(config.algorithm), &binstr_cast);
 	print_struct_elem("t_file*", "files", &(config.files), &file_struct);
 }
 
-void			debug_512_block(uint32_t *block, int base, int bit_size)
+void			debug_block(uint32_t *block, int base, int bit_size)
 {
 	int			i;
 
 	i = 0;
-	while (i < bit_size)
+	while (i < bit_size / 32)
 	{
 		ft_putstr("word(");
 		ft_putnbr(i);

@@ -51,6 +51,7 @@ void			add_file_to_fifo_list(t_file *file, t_file **list)
 void			free_file_list(t_file *files)
 {
 	t_file		*tmp;
+
 	while (files)
 	{
 		tmp = files;

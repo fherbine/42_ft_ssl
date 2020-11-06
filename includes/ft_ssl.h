@@ -44,7 +44,6 @@ typedef struct		s_config
 	t_file			*files;
 }					t_config;
 
-
 t_rstream			read_from_stdin(void);
 
 t_rstream			read_from_file(char *file_path);

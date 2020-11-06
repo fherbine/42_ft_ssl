@@ -27,7 +27,7 @@ void			*ft_memjoin(void *a, void *b, intmax_t size1, intmax_t size2)
 		joined[i] = ((char *)a)[i];
 		i++;
 	}
-	while(i2 < size2)
+	while (i2 < size2)
 	{
 		joined[i] = ((char *)b)[i2];
 		i++;

@@ -31,6 +31,16 @@ void			print_output(t_config *config, char *dgt, char *tag, t_u8 quote)
 	ft_putstr("\n");
 }
 
+static void		handle_stdin_buff(t_config *config, char *(*hash_f)(t_rstream))
+{
+	t_rstream	alt_buffer;
+
+	alt_buffer = read_from_stdin();
+	ft_putstr((config->print) ? alt_buffer.buffer : "");
+	putstrfree((*hash_f)(alt_buffer));
+	ft_putstr("\n");
+}
+
 void			hash_inputs(t_config *config, char *(*hash_func)(t_rstream))
 {
 	t_file		*files;
@@ -38,13 +48,7 @@ void			hash_inputs(t_config *config, char *(*hash_func)(t_rstream))
 
 	files = config->files;
 	if ((!files && !config->given_str) || config->print)
-	{
-		alt_buffer = read_from_stdin();
-		ft_putstr((config->print) ? alt_buffer.buffer : "");
-		ft_putstr((*hash_func)(alt_buffer));
-		ft_putstr("\n");
-		free(alt_buffer.buffer);
-	}
+		handle_stdin_buff(config, hash_func);
 	if (config->given_str)
 	{
 		alt_buffer.buffer = config->given_str;

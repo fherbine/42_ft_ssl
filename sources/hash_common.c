@@ -12,11 +12,11 @@
 
 #include "../includes/ft_ssl.h"
 
-char		*outputs_join(char *s1, char *s2)
+char			*outputs_join(char *s1, char *s2)
 {
-	char	*joined;
-	size_t	i;
-	size_t	i2;
+	char		*joined;
+	size_t		i;
+	size_t		i2;
 
 	i = 0;
 	i2 = 0;

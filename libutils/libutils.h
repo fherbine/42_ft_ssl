@@ -88,4 +88,8 @@ int						ft_toupper(int c);
 
 int						ft_tolower(int c);
 
+char					*ft_lowerstr(char *str);
+
+char					*ft_upperstr(char *str);
+
 #endif

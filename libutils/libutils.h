@@ -92,4 +92,7 @@ char					*ft_lowerstr(char *str);
 
 char					*ft_upperstr(char *str);
 
+void					*ft_memjoin(void *a, void *b, intmax_t size1, \
+									intmax_t size2);
+
 #endif

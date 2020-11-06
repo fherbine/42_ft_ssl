@@ -84,4 +84,8 @@ void					*ft_memalloc(size_t size);
 
 char					*ft_strjoin(char *s1, const char *s2);
 
+int						ft_toupper(int c);
+
+int						ft_tolower(int c);
+
 #endif

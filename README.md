@@ -40,8 +40,8 @@ $ echo "Hello world" | ./ft_ssl [options]
 
 **REQUIRED:**
 - [x] Command parsing.
-- [ ] Files reading.
-- [ ] `STDIN` reading (piped).
+- [x] Files reading.
+- [x] `STDIN` reading (piped).
 - [x] md5 hash algorithm.
 - [ ] sha256 algorithm.
 

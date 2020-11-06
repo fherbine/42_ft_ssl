@@ -12,8 +12,13 @@
 
 #include "../includes/ft_ssl.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_putchar((char)42);
+	t_config config;
+
+	config = parse(argc, argv);
+	//debug_print_config(config);
+	if (!ft_strcmp(config.algorithm, "md5"))
+		hash_inputs(&config, &md5);
 	return (0);
 }

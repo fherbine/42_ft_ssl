@@ -19,10 +19,16 @@
 # include "md5.h"
 # define BUFFER 1024
 
+typedef struct		s_rstream
+{
+	char			*buffer;
+	uint64_t		bytes;
+}					t_rstream;
+
 typedef struct		s_file
 {
 	char			*path;
-	char			*buffer;
+	t_rstream		rstream;
 	struct s_file	*next;
 }					t_file;
 
@@ -38,9 +44,10 @@ typedef struct		s_config
 	t_file			*files;
 }					t_config;
 
-char				*read_from_stdin(void);
 
-char				*read_from_file(char *file_path);
+t_rstream			read_from_stdin(void);
+
+t_rstream			read_from_file(char *file_path);
 
 void				set_default_config(t_config *config);
 
@@ -52,6 +59,8 @@ void				add_file_to_lifo_list(t_file *file, t_file **list);
 
 void				add_file_to_fifo_list(t_file *file, t_file **list);
 
+void				free_file_list(t_file *files);
+
 t_config			parse(int argc, char **argv);
 
 void				debug_print_config(t_config config);
@@ -60,10 +69,19 @@ void				print_help(char *algorithm);
 
 void				debug_block(uint32_t *block, int base, int bit_size);
 
-uint32_t			block_padding(char *str, uint32_t **block_ptr);
+uint32_t			block_padding(char *str, uint32_t **block_ptr, uint64_t bz);
 
 uint32_t			leftrotate(uint32_t to_rotate, uint8_t n);
 
 uint32_t			to_little_endian(uint32_t input);
+
+char				*md5(t_rstream rstream);
+
+void				hash_inputs(t_config *config, \
+									char *(*hash_func)(t_rstream));
+
+void				putstrfree(char *str);
+
+char				*outputs_join(char *s1, char *s2);
 
 #endif

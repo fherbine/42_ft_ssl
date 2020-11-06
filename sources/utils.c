@@ -30,3 +30,9 @@ void		print_help(char *algorithm)
 	ft_putstr("-s str\tprint the sum of the `str`\n");
 	exit(EXIT_SUCCESS);
 }
+
+void		putstrfree(char *str)
+{
+	ft_putstr(str);
+	free(str);
+}

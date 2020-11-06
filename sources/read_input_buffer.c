@@ -12,48 +12,56 @@
 
 #include "../includes/ft_ssl.h"
 
-static char	*catbuffer(char *s1, char *s2)
+static int			catbuffer(char **s1, char *s2, int sz1, int sz2)
 {
-	char	*dst;
-
-	dst = ft_strcat(s1, s2);
-	free(s1);
-	return (dst);
+	*s1 = ft_memjoin(*s1, s2, sz1, sz2);
+	return (sz1 + sz2);
 }
 
-static char	*read_buffer(int fd)
+static t_rstream	read_buffer(int fd)
 {
-	char	*buf;
-	char	*result;
-	int		bz;
+	char			*buf;
+	char			*result;
+	int				bz;
+	int				rbz;
+	t_rstream		rstream;
 
 	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER + 1))))
-		return (NULL);
+		return ((t_rstream){.bytes = 0});
 	if (!(result = (char *)malloc(sizeof(char) * 1)))
-		return (NULL);
+		return ((t_rstream){.bytes = 0});
 	result[0] = '\0';
+	rbz = 0;
 	while ((bz = read(fd, buf, BUFFER)) > 0)
 	{
-		buf[bz] = '\0';
-		result = catbuffer(result, buf);
+		rbz = catbuffer(&result, buf, rbz, bz);
 	}
 	free(buf);
-	return (result);
+	rstream.buffer = result;
+	rstream.bytes = rbz;
+	return (rstream);
 }
 
-char		*read_from_stdin(void)
+t_rstream			read_from_stdin(void)
 {
 	return (read_buffer(STDIN));
 }
 
-char		*read_from_file(char *file_path)
+t_rstream			read_from_file(char *file_path)
 {
-	int		fd;
-	char	*result;
+	int				fd;
+	t_rstream		result;
 
 	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("ft_ssl: ", STDERR);
+		ft_putstr_fd(file_path, STDERR);
+		ft_putstr_fd(": No such file or directory\n", STDERR);
+		return ((t_rstream){.bytes = 0});
+	}
 	result = read_buffer(fd);
 	if (close(fd) == -1)
-		return (NULL);
+		return ((t_rstream){.bytes = 0});
 	return (result);
 }

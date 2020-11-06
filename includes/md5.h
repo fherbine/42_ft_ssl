@@ -64,7 +64,5 @@ void				md5_helper_3(uint32_t *index, uint32_t *inputs, \
 									uint32_t *outputs);
 void				md5_helper_4(uint32_t *index, uint32_t *inputs, \
 									uint32_t *outputs);
-									
-char				*md5(t_md5	md5_struct);
 
 #endif

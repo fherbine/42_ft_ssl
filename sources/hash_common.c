@@ -50,7 +50,7 @@ uint32_t		block_padding(char *str, uint32_t **block_ptr, uint64_t bz)
 	i = bz;
 	blen = bz * 8;
 	npad = blen + (448 - (blen + 1)) % 512;
-	if (!(buffer = (uint8_t *)malloc(sizeof(uint8_t) * (npad + 64 + 1) / 8)))
+	if (!(buffer = (uint8_t *)ft_memalloc(sizeof(uint8_t) * (npad + 65) / 8)))
 		return (0);
 	ft_memcpy((void *)buffer, (void *)str, bz);
 	buffer[i] = 0x80;

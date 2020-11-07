@@ -89,6 +89,5 @@ char			*md5(t_rstream rstream)
 	md5_struct.blocks = blocks;
 	ret = md5_algorithm(md5_struct);
 	free_struct(md5_struct);
-	free(rstream.buffer);
 	return (ret);
 }

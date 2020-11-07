@@ -47,7 +47,7 @@ t_rstream			read_from_stdin(void)
 	return (read_buffer(STDIN));
 }
 
-t_rstream			read_from_file(char *file_path)
+t_rstream			read_from_file(char *file_path, t_config *config)
 {
 	int				fd;
 	t_rstream		result;
@@ -56,6 +56,8 @@ t_rstream			read_from_file(char *file_path)
 	if (fd < 0)
 	{
 		ft_putstr_fd("ft_ssl: ", STDERR);
+		ft_putstr_fd(ft_lowerstr(config->algorithm), STDERR);
+		ft_putstr_fd(": ", STDERR);
 		ft_putstr_fd(file_path, STDERR);
 		ft_putstr_fd(": No such file or directory\n", STDERR);
 		return ((t_rstream){.bytes = 0});

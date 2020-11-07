@@ -46,7 +46,7 @@ typedef struct		s_config
 
 t_rstream			read_from_stdin(void);
 
-t_rstream			read_from_file(char *file_path);
+t_rstream			read_from_file(char *file_path, t_config *config);
 
 void				set_default_config(t_config *config);
 

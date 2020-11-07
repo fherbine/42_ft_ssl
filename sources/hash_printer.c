@@ -59,7 +59,7 @@ void			hash_inputs(t_config *config, char *(*hash_func)(t_rstream))
 	}
 	while (files)
 	{
-		files->rstream = read_from_file(files->path);
+		files->rstream = read_from_file(files->path, config);
 		if (files->rstream.buffer)
 		{
 			print_output(config, (*hash_func)(files->rstream), \

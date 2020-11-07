@@ -46,6 +46,7 @@ $ echo "Hello world" | ./ft_ssl [options]
 - [ ] sha256 algorithm.
 
 **BONUSES:**
+- [x] Unittests
 - [ ] Read from `STDIN`.
 - [ ] sha512
 - [ ] whirlpool

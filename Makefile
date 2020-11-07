@@ -25,6 +25,15 @@ $(NAME): $(OBJ_PATH) $(OBJS)
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $? -o $@
 
+test: testclean re
+	python3 -m venv ./.env
+	. ./.env/bin/activate
+	python3 -m pip install pytest
+	python3 -m pytest ./tests.py
+
+testclean:
+	rm -rf ./.env
+
 clean:
 	rm -rf $(OBJ_PATH)
 	make -C $(LUTILS_PATH) fclean

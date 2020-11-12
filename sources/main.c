@@ -19,5 +19,7 @@ int	main(int argc, char **argv)
 	config = parse(argc, argv);
 	if (!ft_strcmp(config.algorithm, "md5"))
 		hash_inputs(&config, &md5);
+	else if (!ft_strcmp(config.algorithm, "sha256"))
+		hash_inputs(&config, &sha256);
 	return (0);
 }

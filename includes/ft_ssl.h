@@ -17,7 +17,16 @@
 # include <sys/types.h>
 # include "../libutils/libutils.h"
 # include "md5.h"
+# include "sha256.h"
 # define BUFFER 1024
+# define MASK_8 0xff
+# define MASK_16 0xff00
+# define MASK_24 0xff0000
+# define MASK_32 0xff000000
+# define MASK_40 0xff00000000
+# define MASK_48 0xff0000000000
+# define MASK_56 0xff000000000000
+# define MASK_64 0xff00000000000000
 
 typedef struct		s_rstream
 {
@@ -69,10 +78,12 @@ void				print_help(char *algorithm);
 void				debug_block(uint32_t *block, int base, int bit_size);
 
 uint32_t			block_padding(char *str, uint32_t **block_ptr, uint64_t bz);
+uint32_t			block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz);
 
 uint32_t			leftrotate(uint32_t to_rotate, uint8_t n);
 
-uint32_t			to_little_endian(uint32_t input);
+uint32_t			reverse_edianness_32(uint32_t input);
+uint64_t			reverse_edianness_64(uint64_t input);
 
 char				*md5(t_rstream rstream);
 
@@ -82,5 +93,7 @@ void				hash_inputs(t_config *config, \
 void				putstrfree(char *str);
 
 char				*outputs_join(char *s1, char *s2);
+
+char				*sha256(t_rstream rstream);
 
 #endif

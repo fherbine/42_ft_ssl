@@ -65,10 +65,10 @@ static char		*md5_algorithm(t_md5 md5_struct)
 		md5_struct.d += md5_struct.vars[3];
 		i += 16;
 	}
-	out = bword2str(to_little_endian(md5_struct.a), 16, 32);
-	out = outputs_join(out, bword2str(to_little_endian(md5_struct.b), 16, 32));
-	out = outputs_join(out, bword2str(to_little_endian(md5_struct.c), 16, 32));
-	out = outputs_join(out, bword2str(to_little_endian(md5_struct.d), 16, 32));
+	out = bword2str(reverse_edianness_32(md5_struct.a), 16, 32);
+	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.b), 16, 32));
+	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.c), 16, 32));
+	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.d), 16, 32));
 	return (out);
 }
 

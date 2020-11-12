@@ -3,7 +3,8 @@ INCLUDES = ./includes
 SRC_PATH = ./sources
 OBJ_PATH = $(SRC_PATH)/debug
 SRC_NAMES = main.c read_input_buffer.c parse_args.c setup.c file_helper.c \
-			debug.c utils.c hash_common.c md5.c md5_helpers.c hash_printer.c
+			debug.c utils.c hash_common.c md5.c md5_helpers.c hash_printer.c \
+			sha256.c sha256_helpers1.c
 OBJ_NAMES = $(SRC_NAMES:.c=.o)
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAMES))
 OBJS = $(addprefix $(OBJ_PATH)/,$(OBJ_NAMES))

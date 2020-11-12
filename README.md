@@ -48,7 +48,8 @@ $ make test
 - [x] Files reading.
 - [x] `STDIN` reading (piped).
 - [x] md5 hash algorithm.
-- [ ] sha256 algorithm.
+- [x] sha256 algorithm.
+- [ ] Norm
 
 **BONUSES:**
 - [x] Unittests

@@ -36,11 +36,6 @@ $ echo "Hello world" | ./ft_ssl [options]
 $ make test
 ```
 
-## Bonuses
-
-- [ ] Other algorithms than md5 or sha256.
-- [ ] parse commands from `STDIN`.
-
 ## TODO:
 
 **REQUIRED:**

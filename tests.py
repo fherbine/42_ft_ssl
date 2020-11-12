@@ -14,7 +14,7 @@ def _hash(bstring, algo='md5'):
 	return getattr(hashlib, algo)(bstring).hexdigest()
 
 def hashstr(string, algo='md5'):
-	return _hash(string.encode())
+	return _hash(string.encode(), algo)
 
 def hashfile(file, algo='md5'):
 	with open(file, 'rb') as f:
@@ -239,6 +239,115 @@ def test_md5_subject_12():
 	)
 	os.remove('file')
 
+	assert out == expected
+
+# ===============================
+
+# =========== SHA256 ===========
+
+def test_sha256_empty_hash():
+	command = [f'{PROGRAM}', 'sha256', '-s' , '']
+	out = check_output(command).decode()
+	expected = 'SHA256 ("") = %s\n' % hashstr("", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_hash():
+	command = [f'{PROGRAM}', 'sha256', '-s' , 'toto']
+	out = check_output(command).decode()
+	expected = 'SHA256 ("toto") = %s\n' % hashstr("toto", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_hash_r_arg():
+	command = [f'{PROGRAM}', 'sha256', '-r', '-s' , 'toto']
+	out = check_output(command).decode()
+	expected = '%s "toto"\n' % hashstr("toto", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_hash_q_arg():
+	command = [f'{PROGRAM}', 'sha256', '-q', '-s' , 'toto']
+	out = check_output(command).decode()
+	expected = '%s\n' % hashstr("toto", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_stdin_hash():
+	command = [f'{PROGRAM}', 'sha256']
+	out = check_output(command, input=b'toto').decode()
+	expected = '%s\n' % hashstr("toto", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_stdin_hash_p_arg():
+	command = [f'{PROGRAM}', 'sha256', '-p']
+	out = check_output(command, input=b'toto\n').decode()
+	expected = 'toto\n%s\n' % hashstr("toto\n", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_stdin_hash_multiple_arg():
+	command = [f'{PROGRAM}', 'sha256', '-q', '-p', '-r']
+	out = check_output(command, input=b'toto\n').decode()
+	expected = 'toto\n%s\n' % hashstr("toto\n", algo='sha256')
+
+	assert out == expected
+
+def test_sha256_simple_file_hash():
+	command = [f'{PROGRAM}', 'sha256', './README.md']
+	out = check_output(command).decode()
+	expected = 'SHA256 (./README.md) = %s\n' % hashfile('./README.md', algo='sha256')
+
+	assert out == expected
+
+def test_sha256_huge_binary_file_hash():
+	if os.environ.get('SPEEDTEST'):
+		return
+	command = [f'{PROGRAM}', 'sha256', './en.subject.pdf']
+	out = check_output(command).decode()
+	expected = 'SHA256 (./en.subject.pdf) = %s\n' % hashfile('./en.subject.pdf', algo='sha256')
+
+	assert out == expected
+
+# from subject
+
+def test_sha256_subject_1():
+	with open('file', 'w+') as tfile:
+		tfile.write('https://www.youtube.com/watch?v=w-5yAtMtrSM\n')
+	command = [f'{PROGRAM}', 'sha256', '-q', 'file']
+	out = check_output(command).decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashfile('file', algo='sha256'),
+	)
+	os.remove('file')
+
+	assert out == expected
+
+def test_sha256_subject_2():
+	with open('file', 'w+') as tfile:
+		tfile.write('https://www.youtube.com/watch?v=w-5yAtMtrSM\n')
+	command = [f'{PROGRAM}', 'sha', '-sha256', 'file']
+	out = check_output(command).decode()
+	expected = (
+		'SHA256 (file) = {}\n'
+	).format(
+		hashfile('file', algo='sha256'),
+	)
+	os.remove('file')
+
+	assert out == expected
+
+def test_sha256_subject_3():
+	command = [f'{PROGRAM}', 'sha256', '-s', 'wubba lubba dub dub']
+	out = check_output(command).decode()
+	expected = (
+		'SHA256 ("wubba lubba dub dub") = {}\n'
+	).format(
+		hashstr('wubba lubba dub dub', algo='sha256'),
+	)
 	assert out == expected
 
 # ===============================

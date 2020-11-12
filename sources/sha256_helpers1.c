@@ -36,31 +36,3 @@ uint32_t	sha_helper_4(uint32_t n)
 {
 	return (rightrotate(n, 6) ^ rightrotate(n, 11) ^ rightrotate(n, 25));
 }
-
-uint32_t	sha_helper_5(uint32_t n)
-{
-	return (rightrotate(n, 7) ^ rightrotate(n, 18) ^ (n >> 3));
-}
-
-uint32_t	sha_helper_6(uint32_t n)
-{
-	return (rightrotate(n, 17) ^ rightrotate(n, 19) ^ (n >> 10));
-}
-
-void			sha_fill_table(t_sha256 *sha_struct, uint32_t *chunk)
-{
-	uint8_t		i;
-
-	i = 0;
-	while (i < 64)
-	{
-		if (i <= 15)
-			sha_struct->table[i] = chunk[i];
-		else
-			sha_struct->table[i] = (sha_helper_6(sha_struct->table[i - 2]) + \
-				sha_struct->table[i - 7] \
-				+ sha_helper_5(sha_struct->table[i - 15]) \
-				+ sha_struct->table[i - 16]);
-		i++;
-	}
-}

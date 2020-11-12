@@ -12,18 +12,6 @@
 
 #include "../includes/ft_ssl.h"
 
-static void		initialize_sha(t_sha256 *sha_struct)
-{
-	sha_struct->a = SHA256_H0;
-	sha_struct->b = SHA256_H1;
-	sha_struct->c = SHA256_H2;
-	sha_struct->d = SHA256_H3;
-	sha_struct->e = SHA256_H4;
-	sha_struct->f = SHA256_H5;
-	sha_struct->g = SHA256_H6;
-	sha_struct->h = SHA256_H7;
-}
-
 void			sha_main_loop(t_sha256 *shs)
 {
 	uint32_t	i;
@@ -35,7 +23,8 @@ void			sha_main_loop(t_sha256 *shs)
 		tmp[0] = shs->vars[7] + sha_helper_4(shs->vars[4]) \
 			+ sha_helper_1(shs->vars[4], shs->vars[5], shs->vars[6]) \
 			+ g_cst_sha256[i] + shs->table[i];
-		tmp[1] = sha_helper_3(shs->vars[0]) + sha_helper_2(shs->vars[0], shs->vars[1], shs->vars[2]);
+		tmp[1] = sha_helper_3(shs->vars[0]) \
+			+ sha_helper_2(shs->vars[0], shs->vars[1], shs->vars[2]);
 		shs->vars[7] = shs->vars[6];
 		shs->vars[6] = shs->vars[5];
 		shs->vars[5] = shs->vars[4];
@@ -48,6 +37,32 @@ void			sha_main_loop(t_sha256 *shs)
 	}
 }
 
+static void		sha_variable_values(t_sha256 *sha_struct, uint8_t assign)
+{
+	if (assign == TRUE)
+	{
+		sha_struct->vars[0] = sha_struct->a;
+		sha_struct->vars[1] = sha_struct->b;
+		sha_struct->vars[2] = sha_struct->c;
+		sha_struct->vars[3] = sha_struct->d;
+		sha_struct->vars[4] = sha_struct->e;
+		sha_struct->vars[5] = sha_struct->f;
+		sha_struct->vars[6] = sha_struct->g;
+		sha_struct->vars[7] = sha_struct->h;
+	}
+	else
+	{
+		sha_struct->a += sha_struct->vars[0];
+		sha_struct->b += sha_struct->vars[1];
+		sha_struct->c += sha_struct->vars[2];
+		sha_struct->d += sha_struct->vars[3];
+		sha_struct->e += sha_struct->vars[4];
+		sha_struct->f += sha_struct->vars[5];
+		sha_struct->g += sha_struct->vars[6];
+		sha_struct->h += sha_struct->vars[7];
+	}
+}
+
 static char		*sha_algorithm(t_sha256 sha_struct)
 {
 	uint64_t	i;
@@ -57,24 +72,10 @@ static char		*sha_algorithm(t_sha256 sha_struct)
 	initialize_sha(&sha_struct);
 	while (i * 32 < sha_struct.bits_count)
 	{
-		sha_struct.vars[0] = sha_struct.a;
-		sha_struct.vars[1] = sha_struct.b;
-		sha_struct.vars[2] = sha_struct.c;
-		sha_struct.vars[3] = sha_struct.d;
-		sha_struct.vars[4] = sha_struct.e;
-		sha_struct.vars[5] = sha_struct.f;
-		sha_struct.vars[6] = sha_struct.g;
-		sha_struct.vars[7] = sha_struct.h;
+		sha_variable_values(&sha_struct, TRUE);
 		sha_fill_table(&sha_struct, &(sha_struct.blocks[i]));
 		sha_main_loop(&sha_struct);
-		sha_struct.a += sha_struct.vars[0];
-		sha_struct.b += sha_struct.vars[1];
-		sha_struct.c += sha_struct.vars[2];
-		sha_struct.d += sha_struct.vars[3];
-		sha_struct.e += sha_struct.vars[4];
-		sha_struct.f += sha_struct.vars[5];
-		sha_struct.g += sha_struct.vars[6];
-		sha_struct.h += sha_struct.vars[7];
+		sha_variable_values(&sha_struct, FALSE);
 		i += 16;
 	}
 	out = bword2str(sha_struct.a, 16, 32);

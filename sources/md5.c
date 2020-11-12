@@ -48,7 +48,7 @@ void			md5_main_loop(t_md5 *ms, uint32_t *buffer)
 static char		*md5_algorithm(t_md5 md5_struct)
 {
 	uint64_t	i;
-	char		*out;
+	char		*o;
 
 	i = 0;
 	initialize_md5(&md5_struct);
@@ -65,11 +65,11 @@ static char		*md5_algorithm(t_md5 md5_struct)
 		md5_struct.d += md5_struct.vars[3];
 		i += 16;
 	}
-	out = bword2str(reverse_edianness_32(md5_struct.a), 16, 32);
-	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.b), 16, 32));
-	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.c), 16, 32));
-	out = outputs_join(out, bword2str(reverse_edianness_32(md5_struct.d), 16, 32));
-	return (out);
+	o = bword2str(reverse_edianness_32(md5_struct.a), 16, 32);
+	o = outputs_join(o, bword2str(reverse_edianness_32(md5_struct.b), 16, 32));
+	o = outputs_join(o, bword2str(reverse_edianness_32(md5_struct.c), 16, 32));
+	o = outputs_join(o, bword2str(reverse_edianness_32(md5_struct.d), 16, 32));
+	return (o);
 }
 
 static void		free_struct(t_md5 mstruct)

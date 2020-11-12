@@ -66,4 +66,6 @@ uint32_t			sha_helper_2(uint32_t x, uint32_t y, uint32_t z);
 uint32_t			sha_helper_3(uint32_t n);
 uint32_t			sha_helper_4(uint32_t n);
 
+void				initialize_sha(t_sha256 *sha_struct);
+
 #endif

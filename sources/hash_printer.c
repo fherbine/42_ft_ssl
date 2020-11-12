@@ -70,3 +70,31 @@ void			hash_inputs(t_config *config, char *(*hash_func)(t_rstream))
 	}
 	free_file_list(config->files);
 }
+
+char			*outputs_join(char *s1, char *s2)
+{
+	char		*joined;
+	size_t		i;
+	size_t		i2;
+
+	i = 0;
+	i2 = 0;
+	if (!(joined = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + \
+						ft_strlen(s2) + 2))))
+		exit(EXIT_FAILURE);
+	while (s1[i])
+	{
+		joined[i] = s1[i];
+		i++;
+	}
+	while (i2 < ft_strlen(s2))
+	{
+		joined[i] = s2[i2];
+		i++;
+		i2++;
+	}
+	joined[i] = '\0';
+	free(s1);
+	free(s2);
+	return (joined);
+}

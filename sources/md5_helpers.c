@@ -63,3 +63,8 @@ void			md5_helper_4(uint32_t *index, uint32_t *inputs, uint32_t *outs)
 	outs[0] = c ^ (b | (~d));
 	outs[1] = 7 * (*index) % 16;
 }
+
+uint32_t		leftrotate(uint32_t to_rotate, uint8_t n)
+{
+	return ((to_rotate << n) | (to_rotate >> (32 - n)));
+}

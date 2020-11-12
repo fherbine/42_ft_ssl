@@ -78,7 +78,8 @@ void				print_help(char *algorithm);
 void				debug_block(uint32_t *block, int base, int bit_size);
 
 uint32_t			block_padding(char *str, uint32_t **block_ptr, uint64_t bz);
-uint32_t			block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz);
+uint32_t			block_padding_be(char *str, \
+										uint32_t **block_ptr, uint64_t bz);
 
 uint32_t			leftrotate(uint32_t to_rotate, uint8_t n);
 

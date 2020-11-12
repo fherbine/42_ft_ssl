@@ -60,7 +60,6 @@ static int		get_algorithm(char **args, t_config *config, int len)
 		}
 		config->algorithm = ft_strdup("sha256");
 		return (3);
-
 	}
 	else if (ft_strcmp(args[0], "md5") && ft_strcmp(args[0], "sha256"))
 	{

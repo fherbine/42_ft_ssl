@@ -12,34 +12,6 @@
 
 #include "../includes/ft_ssl.h"
 
-char			*outputs_join(char *s1, char *s2)
-{
-	char		*joined;
-	size_t		i;
-	size_t		i2;
-
-	i = 0;
-	i2 = 0;
-	if (!(joined = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + \
-						ft_strlen(s2) + 2))))
-		exit(EXIT_FAILURE);
-	while (s1[i])
-	{
-		joined[i] = s1[i];
-		i++;
-	}
-	while (i2 < ft_strlen(s2))
-	{
-		joined[i] = s2[i2];
-		i++;
-		i2++;
-	}
-	joined[i] = '\0';
-	free(s1);
-	free(s2);
-	return (joined);
-}
-
 uint32_t		block_padding(char *str, uint32_t **block_ptr, uint64_t bz)
 {
 	uint64_t	blen;
@@ -79,7 +51,6 @@ void			reverse_endianness_block(uint32_t *block_ptr, uint64_t len)
 		block_ptr[i] = reverse_edianness_32(block_ptr[i]);
 		i++;
 	}
-	
 }
 
 uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
@@ -89,14 +60,13 @@ uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
 	uint64_t	i;
 	uint8_t		*buffer;
 
-	i = bz;
+	i = bz + 1;
 	blen = bz * 8;
 	npad = blen + (448 - (blen + 1)) % 512;
 	if (!(buffer = (uint8_t *)ft_memalloc(sizeof(uint8_t) * (npad + 65) / 8)))
 		return (0);
 	ft_memcpy((void *)buffer, (void *)str, bz + 1);
-	buffer[i] = 0x80;
-	i += 10;
+	buffer[bz] = 0x80;
 	reverse_endianness_block((uint32_t *)buffer, (npad + 65) / 32);
 	while (++i < (npad + 1) / 8)
 		buffer[i] = buffer[i];
@@ -110,11 +80,6 @@ uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
 	buffer[i + 7] = blen >> 24;
 	*block_ptr = ((uint32_t *)buffer);
 	return (npad + 1 + 64);
-}
-
-uint32_t		leftrotate(uint32_t to_rotate, uint8_t n)
-{
-	return ((to_rotate << n) | (to_rotate >> (32 - n)));
 }
 
 uint32_t		reverse_edianness_32(uint32_t input)

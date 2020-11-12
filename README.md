@@ -31,6 +31,11 @@ $ make
 $ echo "Hello world" | ./ft_ssl [options]
 ```
 
+## How to run tests
+```sh
+$ make test
+```
+
 ## Bonuses
 
 - [ ] Other algorithms than md5 or sha256.

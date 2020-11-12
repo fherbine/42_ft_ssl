@@ -29,6 +29,7 @@ uint32_t		block_padding(char *str, uint32_t **block_ptr, uint64_t bz)
 	i++;
 	while (++i < (npad + 1) / 8)
 		buffer[i] = 0x00;
+	i = (npad + 1) / 8;
 	buffer[i + 0] = blen;
 	buffer[i + 1] = blen >> 8;
 	buffer[i + 2] = blen >> 16;
@@ -70,6 +71,7 @@ uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
 	reverse_endianness_block((uint32_t *)buffer, (npad + 65) / 32);
 	while (++i < (npad + 1) / 8)
 		buffer[i] = buffer[i];
+	i = (npad + 1) / 8;
 	buffer[i + 0] = blen >> 32;
 	buffer[i + 1] = blen >> 40;
 	buffer[i + 2] = blen >> 48;

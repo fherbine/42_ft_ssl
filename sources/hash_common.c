@@ -19,14 +19,13 @@ uint32_t		block_padding(char *str, uint32_t **block_ptr, uint64_t bz)
 	uint64_t	i;
 	uint8_t		*buffer;
 
-	i = bz;
 	blen = bz * 8;
 	npad = blen + (448 - (blen + 1)) % 512;
 	if (!(buffer = (uint8_t *)ft_memalloc(sizeof(uint8_t) * (npad + 65) / 8)))
 		return (0);
 	ft_memcpy((void *)buffer, (void *)str, bz);
-	buffer[i] = 0x80;
-	i++;
+	buffer[bz] = 0x80;
+	i = bz + 1;
 	while (++i < (npad + 1) / 8)
 		buffer[i] = 0x00;
 	i = (npad + 1) / 8;
@@ -56,14 +55,12 @@ void			reverse_endianness_block(uint32_t *block_ptr, uint64_t len)
 
 uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
 {
-	uint64_t	blen;
 	uint64_t	npad;
 	uint64_t	i;
 	uint8_t		*buffer;
 
 	i = bz + 1;
-	blen = bz * 8;
-	npad = blen + (448 - (blen + 1)) % 512;
+	npad = bz * 8 + (448 - (bz * 8 + 1)) % 512;
 	if (!(buffer = (uint8_t *)ft_memalloc(sizeof(uint8_t) * (npad + 65) / 8)))
 		return (0);
 	ft_memcpy((void *)buffer, (void *)str, bz + 1);
@@ -72,14 +69,14 @@ uint32_t		block_padding_be(char *str, uint32_t **block_ptr, uint64_t bz)
 	while (++i < (npad + 1) / 8)
 		buffer[i] = buffer[i];
 	i = (npad + 1) / 8;
-	buffer[i + 0] = blen >> 32;
-	buffer[i + 1] = blen >> 40;
-	buffer[i + 2] = blen >> 48;
-	buffer[i + 3] = blen >> 56;
-	buffer[i + 4] = blen;
-	buffer[i + 5] = blen >> 8;
-	buffer[i + 6] = blen >> 16;
-	buffer[i + 7] = blen >> 24;
+	buffer[i + 0] = bz * 8 >> 32;
+	buffer[i + 1] = bz * 8 >> 40;
+	buffer[i + 2] = bz * 8 >> 48;
+	buffer[i + 3] = bz * 8 >> 56;
+	buffer[i + 4] = bz * 8;
+	buffer[i + 5] = bz * 8 >> 8;
+	buffer[i + 6] = bz * 8 >> 16;
+	buffer[i + 7] = bz * 8 >> 24;
 	*block_ptr = ((uint32_t *)buffer);
 	return (npad + 1 + 64);
 }

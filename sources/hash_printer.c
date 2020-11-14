@@ -36,6 +36,7 @@ static void		handle_stdin_buff(t_config *config, char *(*hash_f)(t_rstream))
 	t_rstream	alt_buffer;
 
 	alt_buffer = read_from_stdin();
+	alt_buffer.buffer[alt_buffer.bytes] = '\0';
 	ft_putstr((config->print) ? alt_buffer.buffer : "");
 	putstrfree((*hash_f)(alt_buffer));
 	free(alt_buffer.buffer);

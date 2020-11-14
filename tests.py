@@ -351,3 +351,67 @@ def test_sha256_subject_3():
 	assert out == expected
 
 # ===============================
+
+# =========== tests correction ===========
+
+def test_correction_1_md5():
+	command = [f'{PROGRAM}', 'md5']
+	out = check_output(command, input=b'is md5("salt") a salted hash? :thonking_face:\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('is md5("salt") a salted hash? :thonking_face:\n', algo='md5'),
+	)
+	assert out == expected
+
+def test_correction_1_sha256():
+	command = [f'{PROGRAM}', 'sha256']
+	out = check_output(command, input=b'is md5("salt") a salted hash? :thonking_face:\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('is md5("salt") a salted hash? :thonking_face:\n', algo='sha256'),
+	)
+	assert out == expected
+
+def test_correction_2_md5():
+	command = [f'{PROGRAM}', 'md5']
+	out = check_output(command, input=b'Magic mirror on the wall, think I wanna smash them all?\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('Magic mirror on the wall, think I wanna smash them all?\n', algo='md5'),
+	)
+	assert out == expected
+
+def test_correction_2_sha256():
+	command = [f'{PROGRAM}', 'sha256']
+	out = check_output(command, input=b'Magic mirror on the wall, think I wanna smash them all?\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('Magic mirror on the wall, think I wanna smash them all?\n', algo='sha256'),
+	)
+	assert out == expected
+
+def test_correction_3_md5():
+	command = [f'{PROGRAM}', 'md5']
+	out = check_output(command, input=b'Speed up now, Gas Pedal??\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('Speed up now, Gas Pedal??\n', algo='md5'),
+	)
+	assert out == expected
+
+def test_correction_3_sha256():
+	command = [f'{PROGRAM}', 'sha256']
+	out = check_output(command, input=b'Speed up now, Gas Pedal??\n').decode()
+	expected = (
+		'{}\n'
+	).format(
+		hashstr('Speed up now, Gas Pedal??\n', algo='sha256'),
+	)
+	assert out == expected
+
+# ===============================

@@ -1,5 +1,6 @@
 import os
 import hashlib
+import platform
 import subprocess
 from subprocess import check_output
 
@@ -415,3 +416,31 @@ def test_correction_3_sha256():
 	assert out == expected
 
 # ===============================
+
+
+# *********** MacOS specific ************
+
+def md5_macos(args, input=None):
+    if 'macOS' not in platform.platform():
+        return
+
+    out = check_output(['./ft_ssl', 'md5'] + args.split(), input=input)
+    expected = check_output(['md5'] + args.split(), input=input)
+    return out == expected
+
+# ----
+
+def test_macos_1():
+    assert md5_macos('', input=b'')
+
+def test_macos_2():
+    assert md5_macos('', input=b'hello world')
+
+def test_macos_3():
+    assert md5_macos('-r ./README.md')
+
+def test_macos_4():
+    assert md5_macos('-q ./README.md')
+
+def test_macos_5():
+    assert md5_macos('-p', input=b'hello world')

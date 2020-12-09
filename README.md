@@ -1,8 +1,9 @@
 ft_ssl \[md5\] \[sha256\]
 ===========
 
+This is a 42 project.
 In this project, I have to code a program able to hash files and streams from
-STDIN.
+STDIN. Final grade: **100/100**
 
 ## How to build
 
